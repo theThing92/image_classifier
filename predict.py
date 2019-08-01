@@ -112,24 +112,24 @@ if __name__ == "__main__":
         print("True label: {}".format(real_image_label))
         print("Predicted label: {}".format(top_classes_names[0]))
 
-        if args.top_k > 1:
+        if args.top_k == 1:
             print("Class Probability: {}".format(top_probs[0]))
 
         if args.top_k > 1:
             print("Class Probabilities for top {} classes:".format(args.top_k))
-            for i,name in top_classes_names:
+            for i,name in enumerate(top_classes_names):
                 print("{} - label: {}, class probability {}".format(i+1, name, top_probs[i]))
 
     else:
         print("True label: {}".format(real_image_label))
         print("Predicted label: {}".format(top_classes[0]))
 
-        if args.top_k > 1:
+        if args.top_k == 1:
             print("Class Probability: {}".format(top_probs[0]))
 
         if args.top_k > 1:
             print("Class Probabilities for top {} classes:".format(args.top_k))
-            for i, name in top_classes:
+            for i, name in enumerate(top_classes):
                 print("{} - label: {}, class probability {}".format(i + 1, name, top_probs[i]))
 
 
