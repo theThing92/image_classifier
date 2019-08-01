@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     parser.add_argument(
         '--arch',
-        required=True,
+        required=False,
         type=str,
         default="resnet152",
         help='Base model architecture for training.')
@@ -32,21 +32,21 @@ if __name__ == "__main__":
     parser.add_argument(
         '--learning_rate',
         type=float,
-        required=True,
+        required=False,
         default=0.001,
         help='Learning rate for training.')
 
     parser.add_argument(
         '--hidden_units',
         type=int,
-        required=True,
+        required=False,
         default=1024,
         help='Number of hidden units in layer.')
 
     parser.add_argument(
         '--epochs',
         type=int,
-        required=True,
+        required=False,
         default=20,
         help='Number of epochs for training.')
 
@@ -112,10 +112,11 @@ if __name__ == "__main__":
 
     if args.arch == "resnet152":
         model = torchvision.models.resnet152(pretrained=True)
+        input_size = model.fc.in_features
 
     elif args.arch == "densenet201":
         model = torchvision.models.densenet201(pretrained=True)
-
+        input_size = model.classifier.in_features
 
 
     # freezing the parameters for the feature extraction part of the model
@@ -126,7 +127,7 @@ if __name__ == "__main__":
 
     # define new classifier layer
     classifier_layer_new = torch.nn.Sequential(
-        OrderedDict([('fc1', torch.nn.Linear(model.fc.in_features, hidden_layer_size)),
+        OrderedDict([('fc1', torch.nn.Linear(input_size, hidden_layer_size)),
                      ('relu', torch.nn.ReLU()),
                      ('dropout', torch.nn.Dropout(0.2)),
                      ('fc2', torch.nn.Linear(hidden_layer_size, len(cat_to_name))),
