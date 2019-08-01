@@ -166,6 +166,8 @@ if __name__ == "__main__":
     val_accuracies = []
 
 
+    # code adapted from:
+    # https://github.com/udacity/deep-learning-v2-pytorch/blob/master/intro-to-pytorch/Part%208%20-%20Transfer%20Learning%20(Solution).ipynb
     def training(model, criterion, steps):
         model.train()
         running_loss = 0
@@ -190,6 +192,8 @@ if __name__ == "__main__":
         return running_loss
 
 
+    # code adapted from:
+    # https://github.com/udacity/deep-learning-v2-pytorch/blob/master/intro-to-pytorch/Part%208%20-%20Transfer%20Learning%20(Solution).ipynb
     def validation(model, criterion):
         model.eval()
 
@@ -212,6 +216,8 @@ if __name__ == "__main__":
             return val_loss, val_accuracy
 
 
+    # code adapted from:
+    # https://github.com/udacity/deep-learning-v2-pytorch/blob/master/intro-to-pytorch/Part%208%20-%20Transfer%20Learning%20(Solution).ipynb
     for epoch in range(epochs):
         running_loss = 0
 
@@ -259,6 +265,8 @@ if __name__ == "__main__":
     plt.close()
 
 
+    # code adapted from:
+    # https://github.com/udacity/deep-learning-v2-pytorch/blob/master/intro-to-pytorch/Part%208%20-%20Transfer%20Learning%20(Solution).ipynb
     def test(model, criterion):
         model.eval()
 
